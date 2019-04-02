@@ -1,0 +1,20 @@
+{
+  "name": "magnolia-talk",
+  "version": "1.0.0",
+  "description": "Slides for 2019 MagnoliaJS talk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx"
+  },
+  "author": "Tyler Clark",
+  "license": "ISC",
+  "dependencies": {
+    "mdx-deck": "^2.0.6"
+  },
+  "devDependencies": {
+    "mdx-deck-code-surfer": "^0.5.5",
+    "raw-loader": "^2.0.0"
+  }
+}
