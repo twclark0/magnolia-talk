@@ -1,37 +1,31 @@
 export { comic as theme } from 'mdx-deck/themes'
 import { Head } from 'mdx-deck'
+import Footer from 'components/Footer'
+import Img from 'components/Img'
 
 # Hello MagnoliaJS!
 
 ---
 
-import Layout from 'components/Layout'
-
-<Layout>
-
 # Master the JS Interview
 
 > Tyler Clark
 
-</Layout>
+<Footer />
 
 ---
 
-## Let's interview!
+# :wave: Nice to meet ya
 
-# :flushed:
+> Full stack software engineer: @pluralsight
 
----
+> Video courses: _@eggheadio_
 
-# Live Results
-
-See what what your peers are choosing
+> Twitter: _@iamtylerwclark_
 
 ---
 
-The truth is, we all get nervous when interviewing.
-
-# :grimacing:
+<Img url="./twitter.png" />
 
 ---
 
@@ -39,40 +33,492 @@ This talk won't get you an instant pay raise :crossed_fingers:
 
 My hope is to _*help*_ prepare you for common _*buzzword*_ questions
 
-Be prepared. Be proactive. Believe in yourself. :muscle:
+Be prepared. Be proactive. _Believe in yourself._ :muscle:
+
+<Footer />
+
+<!-- ---
+
+import Url from 'components/Url'
+
+## Let's interview!
+
+# :flushed:
+
+<Url text="bit.ly/2U6D1mT" />
+
+<Footer />
+
+--- -->
+
+<!-- # Results
+
+See what what your peers chose
+
+<Footer /> -->
 
 ---
 
 ## Be prepared to back it up.
 
-> I don’t care if a candidate knows the word “closure” or the technical definition.
-> I want to find out if they understand the basic mechanics.
-> If they don’t, it’s usually a clear indicator that the developer does not have a lot of experience building actual JavaScript applications.
+> I don’t care if a candidate _knows the word “closure”_ or the technical definition.
+> I want to find out if they _understand the basic mechanics_.
+> If they don’t, it’s usually a clear indicator that the developer _does not have a lot of experience_ building actual JavaScript applications.
 
 > -Eric Elliott
+
+<Footer />
 
 ---
 
 ## Look more into these concepts afterwards
 
-> _Check out my twitter for slides: @iamtylerwclark_
+> We simply just don't have the time to go over pros, cons, & implementations
+
+<Footer />
 
 ---
 
-# What is a closure?
+# 1.)  What is a closure?
 
-###### Answer: All of the above
+<!-- ###### Answer: _All of the above_ -->
+
+<Footer />
 
 ---
 
+<!-- ### Answer: _All of the above_ -->
+
+- *An inner function enclosed by another function*
 - A data privacy technique for objects
-- An inner function enclosed by another function
 - A stateful function
 
+<Footer />
+
 ---
 
-At the core, a function within another function
+At the core, a closure is a inner function within another function
 
 ```javascript
-function add(a, b) {}
+function parent(a, b) {
+  return function closure() {
+    const c = 5
+    return a + b + c
+  }
+}
 ```
+
+<Footer />
+
+---
+
+## What does that mean about closures?
+
+- Access to global, parent, and self scope (data privacy)
+
+```javascript
+// ES6
+const example = (a, b) => c => a + b + c
+```
+
+<Footer />
+
+---
+
+# Closure Recap
+
+- Inner function has access to at least three scopes
+- Can hide values within it's own scope
+
+---
+
+# 2.) What are curried functions?
+
+#### Currying: Function that takes multiple arguments _one_ at a time
+
+<Footer />
+
+---
+
+# Curried functions
+
+```JavaScript
+const func = (a, b) => a + b
+
+func(1, 2) //3
+
+```
+
+Curried functions takes one argument at a time
+
+```JavaScript
+const curriedFunction = a => b => a + b
+
+curriedFunction(1)(2) //3
+```
+
+---
+
+# 3.) What are partially applied functions?
+
+- Happens when only _some_ of it's arguments have been applied.
+
+<Footer />
+
+---
+
+# Partially applied functions
+
+```JavaScript
+const curriedFunction = a => b => a + b
+
+const partiallyApplied = curriedFunction(1)
+```
+
+#### partiallyApplied is now a closure function with a fixed value of 1
+
+<Footer />
+
+---
+
+# Partially applied functions
+
+```JavaScript
+const curriedFunction = a => b => a + b
+
+const partiallyApplied = curriedFunction(1)
+
+partiallyApplied(2) // 3
+```
+
+#### No longer partially applied, the function is complete
+
+<Footer />
+
+---
+
+## Closures, Curried, Partially Applied functions
+
+# :heart: :heart: :heart:
+
+<Footer />
+
+---
+
+# TL&DR
+
+- _Closure:_ enclosed function within another function with access to at least three scopes
+- _Curried:_ Functions that apply one argument at a time returning another function until final value
+- _Partially applied:_ Returned function with fixed value(s) waiting to be resolved
+
+<Footer />
+
+---
+
+# 4.) What is a Pure Function?
+
+<!-- ###### Answer: _Given the same input, returns same output. Produces no side effects_ -->
+
+<Footer />
+
+---
+
+# Pure Functions
+
+### Given the same input, returns same output.
+
+```JavaScript
+const addFive = (a) => a + 5
+
+addFive(2) // 7
+addFive(2) // 7
+addFive(2) // 7
+```
+
+<Footer />
+
+---
+
+# ! Pure Functions
+
+```JavaScript
+const addFive = (a) => Math.random()
+
+addFive(2) // 0.796
+addFive(2) // 0.484
+addFive(2) // 0.433
+```
+
+<Footer />
+
+---
+
+## Pure Functions produce no side effects
+
+```JavaScript
+const state = { a: 1 }
+
+const addFive = (a) => {
+    state.a = a
+    return a + 5
+}
+
+addFive(2) // 7
+addFive(2) // 7
+```
+
+<Footer />
+
+---
+
+# Bullets on Pure Functions
+
+- Deterministic, _testable_
+- Legos, building blocks, should be _favored over other options_
+- Independent of outside state. _Foundation of functional programming_
+
+<Footer />
+
+---
+
+# 5.) What is Recursion?
+
+###### A function that directly or indirectly calls itself\_
+
+<Footer />
+
+---
+
+# Recursion
+
+```JavaScript
+const counter = (n) => {
+    for (let i = n; i <= 10; i++) {
+        console.log(i)   // 0,1,2,3... 10
+    }
+}
+
+counter(0)
+```
+
+<Footer />
+
+---
+
+# Recursion
+
+```JavaScript
+const counter = (n) => {
+    console.log(n)   // 0,1,2,3... Infinity
+    return counter(n+1)
+}
+
+counter(0)
+```
+
+<Footer />
+
+---
+
+# Recursion
+
+- Works on a call stack, first in is last out
+- Always needs a base case or it will throw an error / lock up (stack overflow)
+
+<Footer />
+
+---
+
+# Recursion
+
+```JavaScript
+const counter = (n) => {
+    console.log(n)  // 0,1,2,3... 10
+    if (n === 10) return // base case
+    return counter(n+1)
+}
+
+counter(0)
+```
+
+<Footer />
+
+<!-- ---
+
+# What is Big O Notation?
+
+###### Answer: _The speed at which an algorithm grows_
+
+<Footer />
+
+---
+
+# Big O Notation
+
+- It does _not_ tell you how fast in seconds your algorithm will run to completion
+- It tells you how fast the algorithm will _grow_
+- It tells us the _worst case scenario_ our algorithm will run for
+
+<Footer />
+
+---
+
+# Big O Notation
+
+```JavaScript
+const notation = (n) => {
+    return n[2]
+}
+
+notation([0, 1, 2, 3])
+```
+
+- _Constant time_, always one step regardless of the size of array
+- Notation: O(1)
+
+---
+
+# Big O Notation
+
+```JavaScript
+const notation = (n) => {
+    for (let i in n) {
+        console.log(i)
+    }
+}
+
+notation([0, 1, 2, 3])
+```
+
+- _Linear time_, however large your array is the number (_n_) of steps
+- Notation: O(n)
+
+---
+
+# Big O Notation
+
+```JavaScript
+const binarySearch = (arr, item) => {
+    // Take sorted array and look at middle item
+    // If smaller, grab middle item of all items smaller
+    // or
+    // If larger, grab middle item of all items larger
+}
+
+notation([0, 1, 2, 3], 3)
+```
+
+---
+
+# Big O Notation
+
+- _Logarithmic Time_ or _Log Time_
+- Jumping to the middle of our list and repeating
+- O(log n)
+
+<Footer />
+
+---
+
+# Big O Notation
+
+Array with 1000 items
+
+- Linear _O(n)_ worse case is 1000
+- Log time _O(log n)_ worse case is ~10 (2^10 = 1028)
+
+<Footer />
+
+---
+
+# Big O Notation
+
+```JavaScript
+const notation = () => {
+    for (let i = 0; i < n; i++)
+    {
+        for(let j = i + 1; j < n; j++)
+        {
+        }
+    }
+}
+```
+
+---
+
+# Big O Notation
+
+- Linear _O(n)_ \* _O(n)_ = _O(n^2)_
+
+<Footer />
+
+---
+
+import { Image } from 'mdx-deck'
+
+# Big O Notation
+
+<Image src="./bigon.png" />
+
+###### http://bigocheatsheet.com/ -->
+
+---
+
+### What is the difference between class and prototypal inheritance?
+
+###### Answer: _Class inheritance is a parent / child relationship. Protoypes are objects linking to other objects_
+
+<Footer />
+
+---
+
+# What is inheritance?
+
+- Code reuse pattern (Gorilla/banana scenario)
+- For example _\[\]\.map()_, _\[\]\.filter()_, _\[\]\.reduce()_ work
+
+<Footer />
+
+---
+
+# Class Inheritance
+
+- Classes are like blueprints
+- Involve the _new_ keyword, _constructors_, _instances_ from blueprints
+- Parent / Child relationships
+
+<Footer />
+
+---
+
+# Prototypal Inheritance
+
+- Prototypes are _Objects_
+- All Objects have an auto created property _(\_\_proto\_\_)_
+- ES6 JS _classes_ still use prototypal inheritance
+
+<Footer />
+
+---
+
+# Recap :punch:
+
+- Closures
+- Curried functions
+- Partially applied functions
+- Pure functions
+- Recursion
+- Class vs. Prototypal Inheritance
+
+<Footer />
+
+---
+
+# Links
+
+- [Eric Elliott's "Master the JavaScript Interview" Series](https://gist.github.com/Geoff-Ford/c985b67a1a27deadb970d828b6a90282)
+- [Reactjs Interview Questions](https://github.com/sudheerj/reactjs-interview-questions)
+- [JavaScript Algorithm Questions](https://www.thatjsdude.com/interview/js1.html)
+- [General JavaScript Questions](https://www.thatjsdude.com/interview/js2.html)
+
+<Footer />
